@@ -17,12 +17,12 @@ server.use(express.json());
 server.use(cookieParser());
 
 server.use('/api/user', userRoute)
-server.use('/api/dashboard', validateToken, adminAccess)
+server.use('/api', validateToken, adminAccess)
 
 server.get('/', (req,res)=>{
     res.json({
-        estado: true,
-        mensaje:"working"
+        state: true,
+        message:"working"
     })
 });
 

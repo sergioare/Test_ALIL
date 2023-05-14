@@ -28,5 +28,5 @@ export const loginUser = async (req, res, next) => {
         data: {token}
     })
 
-    res.json({error:null, message: "Welcome", token})
+    // res.json({error:null, message: "Welcome", token})
 }
