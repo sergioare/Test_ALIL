@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import store from '../store/store.js'
+import Swal from 'sweetalert2'
 
 const routes = [
   { 
@@ -19,7 +20,13 @@ const routes = [
     meta: {
       requiresAuth:true
     },
-    component: ()=> import ("../components/Dashboard.vue") },
+    component: ()=> import ("../components/Dashboard.vue") 
+  },
+  { 
+    path: "/register", 
+    name: "Register",
+    component: ()=> import ("../components/Register.vue") 
+  },
 ];
 
 const history = createWebHistory();
@@ -31,10 +38,13 @@ const router = createRouter({
 
 router.beforeEach((to, from, next)=>{
   const isRequired = to.matched.some(item=>item.meta.requiresAuth)
-    if(isRequired && store.state.token === null){
-      setTimeout(()=>{
-        alert('Trying log in to access')
-      }, "100")
+     if(isRequired && store.state.token === null){
+      Swal.fire({
+        title: 'Please try again',
+        text: 'Trying log in to access',
+        icon: 'warning',
+        confirmButtonText: 'Cool'
+      })
       next('/login')
       
     }else{

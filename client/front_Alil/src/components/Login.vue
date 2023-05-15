@@ -1,10 +1,11 @@
 <template>
     <div class="login">
-        <h1>Login</h1>
+        <h2>Login</h2>
         <form @submit.prevent="login(usuario)">
-            <input type="email" placeholder="email" v-model="usuario.email"/>
-            <input type="password" placeholder="password" v-model="usuario.password"/>
-            <button type="submit">Access your account</button>
+            <input type="email" placeholder="email" class="input" v-model="usuario.email"/>
+            <input type="password" placeholder="password" class="input" v-model="usuario.password"/>
+            <button type="submit" class="btn" @click='redirectToDashboard'>Access your account</button>
+            <p>Don’t have an account? <span @click='redirectToRegister' class='link'>Sign Up</span></p> 
         </form>
     </div>
 </template>
@@ -21,12 +22,18 @@
             }
         },
         methods:{
-            ...mapActions(['login'])
+            ...mapActions(['login']),
+             redirectToRegister(){
+                 this.$router.push({name:'Register'});
+            },
+            redirectToDashboard(){
+                this.$router.push({name:'Dashboard'});
+            }
         },
         name:"Login"
     }
 </script>
 
-<style  scoped>
-
+<style  lang="scss">
+@import '@/assets/styles/styles.scss';
 </style>

@@ -11,14 +11,16 @@
 </script>
 
 <template>
-  <button @click="logOut">Log out</button>
- <nav>
-    <router-link to="/">Home</router-link>
-|</nav>
-  <router-view />
+  <div class="general">
+    <nav>
+       <router-link to="/" class="go-home">Go Home</router-link>
+   |</nav>
+    <router-view />
+  </div>
 </template>
 
 
 <style lang="scss" scoped>
+@import '@/assets/styles/styles.scss';
 
 </style>
