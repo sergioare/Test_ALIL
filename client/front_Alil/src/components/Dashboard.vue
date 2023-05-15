@@ -4,25 +4,25 @@
         <input type="number" placeholder="Enter amount" id="quantity" class="input" v-model="convertor.quantity"/>
         
         <label for="from">From...</label>
-            <select class="select"  id="from" v-model="convertor.from">
+            <select class="input"  id="from" v-model="convertor.from">
                 <option :value="currency.code" v-for="currency in currenciesToArray">
                     {{ currency.name }}
                 </option>
             </select>
 
         <label for="to">To...</label>
-            <select class="select" id="to" v-model="convertor.to">
+            <select class="input" id="to" v-model="convertor.to">
                 <option :value="currency.code" v-for="currency in currenciesToArray">
                     {{ currency.name }}
                 </option>
             </select>
         
-        <button @click="currencyConverter">Convert</button>
+        <button :disabled="btnDisable" @click="currencyConverter" class="btn-dash">Convert</button>
 
-        <button @click="logOut" class="btn">Log out</button>
-
+        
         <p>Result: {{ convertor.result }}</p>
-
+        
+        <button @click="logOut" class="btn-dash">Log out</button>
     </div>
 </template>
 
@@ -71,6 +71,9 @@ import { REQUESTPATHBACK, REQUESTAPICONVERT, REQUESTCURRENCIES, REQUESTAPIVALUES
                 }catch(error){
                     console.log(error)
                 }
+            },
+            btnDisable(){
+                return this.convertor.quantity === 0 || !this.convertor.quantity;
             },
             ...mapState(['token']),
         },
@@ -139,6 +142,14 @@ import { REQUESTPATHBACK, REQUESTAPICONVERT, REQUESTCURRENCIES, REQUESTAPIVALUES
                 // .then(res=>console.log(res))
             }
         },
+        // watch:{
+        //     from(){
+        //       this.convertor.result = 0;
+        //     },
+        //     to(){
+        //       this.convertor.result = 0;
+        //     }
+        // },
         created(){
             this.protectedData()
         },
