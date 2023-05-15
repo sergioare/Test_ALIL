@@ -10,7 +10,11 @@ import validateToken from './middlewares/validate-token.js'
 
 const server = express();
 
-server.use(cors());
+// const corsOptions = {
+//   origin: 'http://localhost:5173'
+// };
+
+server.use(cors())
 server.use(morgan('dev'));
 server.use(bodyParser.urlencoded({extended: false}));
 server.use(express.json());

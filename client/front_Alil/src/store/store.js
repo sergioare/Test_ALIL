@@ -26,7 +26,7 @@ export default createStore({
                      
                 await axios.post(`${REQUESTPATHBACK}/api/user/login`, usuario)
                 .then(res=>{
-                    console.log(res.data.data.token)
+                    // console.log(res.data.data.token)
                     commit('setToken', res.data.data.token)
                     localStorage.setItem('token', res.data.data.token)
                     
